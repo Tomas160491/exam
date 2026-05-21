@@ -1,0 +1,15 @@
+digraph ER {
+    graph [rankdir=LR, bgcolor="white"];
+    node [shape=record, style="rounded,filled", fillcolor="#eef7ff", color="#1368aa", fontname="Arial"];
+    edge [color="#1368aa", fontname="Arial"];
+
+    users [label="users|id PK\llogin UNIQUE\lpassword_hash\lfull_name\lphone\lemail\lrole\lcreated_at\l"];
+    halls [label="halls|id PK\lname\ltype\ldescription\lcapacity\lprice_per_hour\lcreated_at\l"];
+    bookings [label="bookings|id PK\luser_id FK\lhall_id FK\levent_date\lpayment_method\lstatus\lcreated_at\lupdated_at\l"];
+    reviews [label="reviews|id PK\luser_id FK\lbooking_id FK\lrating\lcomment\lcreated_at\l"];
+
+    users -> bookings [label="1:N"];
+    halls -> bookings [label="1:N"];
+    users -> reviews [label="1:N"];
+    bookings -> reviews [label="1:1"];
+}

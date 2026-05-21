@@ -1,0 +1,50 @@
+======================================================
+        ER-диаграмма портала "Банкетам.Нет"
+======================================================
+
+┌─────────────┐        ┌─────────────┐
+│    users    │        │    halls    │
+├─────────────┤        ├─────────────┤
+│ id PK       │        │ id PK       │
+│ login UNIQUE│        │ name        │
+│ password    │        │ type        │
+│ full_name   │        │ description │
+│ phone       │        │ capacity    │
+│ email       │        │ price_per_h │
+│ role        │        │ created_at  │
+│ created_at  │        └─────────────┘
+└──────┬──────┘               │
+       │ 1:N                  │ 1:N
+       │                      │
+       └──────────┬───────────┘
+                  ▼
+          ┌─────────────┐
+          │  bookings   │
+          ├─────────────┤
+          │ id PK       │
+          │ user_id FK  │
+          │ hall_id FK  │
+          │ event_date  │
+          │ payment_met │
+          │ status      │
+          │ created_at  │
+          │ updated_at  │
+          └──────┬──────┘
+                 │ 1:1
+                 ▼
+          ┌─────────────┐
+          │   reviews   │
+          ├─────────────┤
+          │ id PK       │
+          │ user_id FK  │
+          │ booking_id  │
+          │ rating      │
+          │ comment     │
+          │ created_at  │
+          └─────────────┘
+
+Легенда:
+PK   – первичный ключ
+FK   – внешний ключ
+1:N  – один ко многим
+1:1  – один к одному
